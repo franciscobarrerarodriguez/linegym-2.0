@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '67.225.203.140',
+	'hostname' => 'localhost',
 	'username' => 'virtualt_root',
 	'password' => '123456789',
 	'database' => 'virtualt_linegymDB',
