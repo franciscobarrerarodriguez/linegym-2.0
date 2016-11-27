@@ -43,6 +43,30 @@
 						</li>
 					</ul>
 				</li>
+        <li id="menu_coach">
+					<a href="#">
+						<i class="fa fa-binoculars"></i>
+						<span class="title">Coaches</span>
+					</a>
+					<ul>
+						<li id="menu_new_coach">
+							<a href="<?php echo site_url('linegym/admin/view_new_coach')?>">
+								<span class="title"><i class="entypo-plus"></i> Nuevo</span>
+							</a>
+						</li>
+						<li id="menu_all_coaches">
+							<a href="<?php echo site_url('linegym/admin/view_all_coaches')?>">
+								<span class="title"><i class="entypo-list"></i> Todos</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+        <li id="menu_logout">
+          <a href="<?php echo site_url('welcome/logout')?>">
+            <i class="fa fa-sign-out"></i>
+            <span class="title">Cerrar sesion</span>
+          </a>
+        </li>
 
 			</ul>
 

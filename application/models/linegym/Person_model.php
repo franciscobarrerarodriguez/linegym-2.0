@@ -103,6 +103,15 @@ class Person_model extends CI_Model {
   }
 
   /*
+  Clientes activos
+  */
+  public function getActiveClientList($id_box) {
+    $this->db->select('PLANS.PLAN_ID, SUBSCRIPTIONS_RECORD.ID_PLAN');
+    $this->db->from($this->table);
+    $this->db->join('SUBSCRIPTIONS_RECORD', 'PLANS.PLAN_ID = SUBSCRIPTIONS_RECORD.ID_PLAN');
+  }
+
+  /*
   Retorna todas las personas que son Administradores.
   */
   public function adminList(){

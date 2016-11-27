@@ -236,6 +236,13 @@ class Admin extends CI_Controller {
 	}
 
 	/*
+	Lista de clientes activos ajax.
+	*/
+	public function ajaxActiveClient_list() {
+		echo json_encode ($this->Person_model->clientList($this->session->ID_BOX));
+	}
+
+	/*
 	Lista de clientes ajax.
 	*/
 	public function ajaxClient_list() {
@@ -362,6 +369,15 @@ class Admin extends CI_Controller {
 			$success = false;
 		}
 		echo json_encode(array('STATUS' => $success, 'ID_SUBSCRIPTION' => $last_subscription->ID_SUBSCRIPTION));
+	}
+
+/*
+Carga la vista para ingresar un nuevo coach.
+*/
+	public function view_new_coach(){
+		$this->load->view('linegym/header');
+		$this->load->view('linegym/admin_views/new_coach');
+		$this->load->view('linegym/footer');
 	}
 
 }

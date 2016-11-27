@@ -67,6 +67,32 @@ CREATE TABLE SUBSCRIPTIONS_RECORD (
 );
 
 /*==============================================================*/
+/* Table: WORKOUTS                                              */
+/*==============================================================*/
+CREATE TABLE WORKOUTS(
+   ID_WORKOUT               INTEGER       NOT NULL,
+   ID_PERSON                INTEGER       NOT NULL,
+   NAME_WORKOUT             VARCHAR(50)   ,
+   DESCRIPTION_WORKOUT      VARCHAR(800)  NOT NULL,
+   OBSERVATION_WORKOUT      VARCHAR(500)  ,
+   DATE_WORKOUT             DATE          NOT NULL,
+   PRIMARY KEY (ID_WORKOUT)
+);
+
+/*==============================================================*/
+/* Table: HEALTH_PROGRESS                                       */
+/*==============================================================*/
+CREATE TABLE HEALTH_PROGRESS(
+   ID_HEALTH            INTEGER      NOT NULL,
+   ID_PERSON            INTEGER      NOT NULL,
+   WEIGHT               VARCHAR(20)  NOT NULL,
+   MUSCLE_MASS          VARCHAR(20)  NOT NULL,
+   FAT_LEVEL            VARCHAR(20)  NOT NULL,
+   DATE_HEALTH          DATE         NOT NULL,
+   PRIMARY KEY (ID_HEALTH)
+);
+
+/*==============================================================*/
 /*CONSTRAINTS                                                   */
 /*==============================================================*/
 ALTER TABLE BOXES   ADD UNIQUE     BOX_UK_ID_BOX (ID_BOX);
@@ -82,6 +108,12 @@ ALTER TABLE SUBSCRIPTIONS_RECORD ADD UNIQUE     SUB_UK_ID_SUB (ID_SUBSCRIPTION);
 ALTER TABLE SUBSCRIPTIONS_RECORD ADD CONSTRAINT SUB_FK_ID_PER FOREIGN KEY (ID_PERSON) REFERENCES PERSONS (ID_PERSON) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE SUBSCRIPTIONS_RECORD ADD CONSTRAINT SUB_FK_ID_PLA FOREIGN KEY (ID_PLAN) REFERENCES PLANS (ID_PLAN) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE SUBSCRIPTIONS_RECORD ADD CONSTRAINT SUB_CK_STATUS CHECK (STATUS IN ('PEN'/*PENDING*/,'CLO'/*CLOSED*/));
+
+ALTER TABLE WORKOUTS ADD UNIQUE WOR_UK_ID_WOR (ID_WORKOUT);
+ALTER TABLE WORKOUTS ADD CONSTRAINT WOR_FK_ID_PER FOREIGN KEY (ID_PERSON) REFERENCES PERSONS (ID_PERSON) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE HEALTH_PROGRESS ADD UNIQUE HEA_UK_ID_HEA (ID_HEALTH);
+ALTER TABLE HEALTH_PROGRESS ADD CONSTRAINT HEA_FK_ID_PER FOREIGN KEY (ID_PERSON) REFERENCES PERSONS (ID_PERSON) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 /*==============================================================*/
 /*INSERTS                                                       */

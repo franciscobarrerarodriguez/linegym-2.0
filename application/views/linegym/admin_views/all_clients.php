@@ -119,8 +119,6 @@
       <div class="col-md-9 col-sm-7">
         <h2>Clientes</h2>
       </div>
-
-
       <div class="col-md-3 col-sm-5">
 
         <form method="get" role="form" class="search-form-full">
@@ -136,8 +134,46 @@
     </div>
     <hr>
 
-    <div id="clients">
+    <!-- Tabs -->
+
+
+    <div class="row">
+
+      <div class="">
+
+        <div class="tabs-vertical-env">
+
+          <ul class="nav tabs-vertical"><!-- available classes "right-aligned" -->
+            <li class="active"><a href="#actives" data-toggle="tab">Activos</a></li>
+            <li><a href="#debt" data-toggle="tab">Profile</a></li>
+            <li><a href="#closed" data-toggle="tab">Messages</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="actives">
+              <div id="clients">
+              </div>
+            </div>
+            <div class="tab-pane" id="debt">
+              <p>Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities the. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed add screened rendered six say his striking confined. </p>
+            </div>
+            <div class="tab-pane" id="closed">
+              <p>When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr. </p>
+            </div>
+            <div class="tab-pane" id="v-settings">
+              <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
     </div>
+    <!-- end Tabs       -->
+
 
       <!-- Pager for search results -->
       <div class="row">
