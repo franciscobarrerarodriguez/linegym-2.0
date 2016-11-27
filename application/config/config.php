@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /* No olvidar configurar para subir al host
 */
 // LOCALHOST
-// $config['base_url'] = 'http://localhost/LineGym/';
+$config['base_url'] = 'http://localhost/linegym-2.0/';
 // HOSTING
 // $config['base_url'] = 'http://linegym.virtualtic.co/';
 /*
