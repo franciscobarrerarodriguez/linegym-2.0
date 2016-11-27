@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `virtualt_dbgym`;
-CREATE DATABASE IF NOT EXISTS `virtualt_dbgym` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `virtualt_dbgym`;
+DROP DATABASE IF EXISTS `virtualt_linegymDB`;
+CREATE DATABASE IF NOT EXISTS `virtualt_linegymDB` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `virtualt_linegymDB`;
 
 /*==============================================================*/
 /* Table: BOXES                                                 */

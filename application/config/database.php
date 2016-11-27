@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'http://linegym.virtualtic.co/',
 	'username' => 'virtualt_root',
 	'password' => '123456789',
-	'database' => 'virtualt_dbgym',
+	'database' => 'virtualt_linegymDB',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
