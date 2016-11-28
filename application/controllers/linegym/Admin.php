@@ -20,8 +20,9 @@ class Admin extends CI_Controller {
 	*/
 	public function index()
 	{
+			$data['box'] = $this->Box_model->getBoxById($this->session->ID_BOX);
 		$this->load->view('linegym/header');
-		$this->load->view('linegym/admin');
+		$this->load->view('linegym/admin', $data);
 		$this->load->view('linegym/footer');
 	}
 
@@ -98,8 +99,7 @@ class Admin extends CI_Controller {
 	/*
 	Actualiza un plan en la base de datos y envia su respuesta a la vista.
 	*/
-	public function updatePlan($ID_PLAN)
-	{
+	public function updatePlan($ID_PLAN){
 		$success = false;
 		$data = array(
 			'JOINING_PLAN' => date('Y-m-d'),
@@ -121,16 +121,14 @@ class Admin extends CI_Controller {
 	/*
 	Lista de planes ajax.
 	*/
-	public function ajaxPlan_list()
-	{
+	public function ajaxPlan_list(){
 		echo json_encode ($this->Plan_model->plansList($this->session->ID_BOX));
 	}
 
 	/*
 	Retorna el estado de una peticion de borrado de un plan
 	*/
-	public function ajaxDelete_plan($ID_PLAN)
-	{
+	public function ajaxDelete_plan($ID_PLAN){
 		$success = false;
 		if($this->Plan_model->deletePlan($ID_PLAN, $this->session->ID_BOX)){
 			$success = true;
@@ -141,8 +139,7 @@ class Admin extends CI_Controller {
 	/*
 	Retorna un plan especifico en json_encode
 	*/
-	public function ajax_getPlanById($ID_PLAN)
-	{
+	public function ajax_getPlanById($ID_PLAN){
 		echo json_encode($this->Plan_model->getPlanById($ID_PLAN, $this->session->ID_BOX));
 	}
 

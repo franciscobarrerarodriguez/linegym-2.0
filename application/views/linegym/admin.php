@@ -313,53 +313,44 @@ function getRandomInt(min, max)
 
 
 <div class="row">
-	<div class="col-sm-3 col-xs-6">
+	<div class="col-sm-4 col-xs-6">
 
 		<div class="tile-stats tile-red">
 			<div class="icon"><i class="entypo-users"></i></div>
 			<div class="num" data-start="0" data-end="83" data-postfix="" data-duration="1500" data-delay="0">0</div>
 
-			<h3>Registered users</h3>
-			<p>so far in our blog, and our website.</p>
+			<h3>Clientes registrados</h3>
+			<p>Clientes registrados en <strong><?php echo $box->NAME_BOX ?></strong>.</p>
+			<br>
 		</div>
 
 	</div>
 
-	<div class="col-sm-3 col-xs-6">
+	<div class="col-sm-4 col-xs-6">
 
 		<div class="tile-stats tile-green">
-			<div class="icon"><i class="entypo-chart-bar"></i></div>
+			<div class="icon"><i class="fa fa-grav"></i></div>
 			<div class="num" data-start="0" data-end="135" data-postfix="" data-duration="1500" data-delay="600">0</div>
 
-			<h3>Daily Visitors</h3>
-			<p>this is the average value.</p>
+			<h3>Numero de planes</h3>
+			<p>&nbsp;</p>
+			<br>
 		</div>
 
 	</div>
 
-	<div class="col-sm-3 col-xs-6">
+	<div class="col-sm-4 col-xs-6">
 
 		<div class="tile-stats tile-aqua">
-			<div class="icon"><i class="entypo-mail"></i></div>
+			<div class="icon"><i class="fa fa-stack-exchange"></i></div>
 			<div class="num" data-start="0" data-end="23" data-postfix="" data-duration="1500" data-delay="1200">0</div>
-
-			<h3>New Messages</h3>
-			<p>messages per day.</p>
+			<h3>Deudas por cobrar</h3>
+			<p>&nbsp;</p>
+			<br>
 		</div>
 
 	</div>
 
-	<div class="col-sm-3 col-xs-6">
-
-		<div class="tile-stats tile-blue">
-			<div class="icon"><i class="entypo-rss"></i></div>
-			<div class="num" data-start="0" data-end="52" data-postfix="" data-duration="1500" data-delay="1800">0</div>
-
-			<h3>Subscribers</h3>
-			<p>on our site right now.</p>
-		</div>
-
-	</div>
 </div>
 
 <br />
@@ -534,7 +525,7 @@ function getRandomInt(min, max)
 						<td>Co-founder</td>
 						<td class="text-center"><span class="inlinebar-3">5,3,2,5,4,5</span></td>
 					</tr>
-					
+
 				</tbody>
 			</table>
 		</div>
