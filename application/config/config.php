@@ -28,11 +28,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //DEFAULT
 // $config['base_url'] = '';
 // LOCALHOST
-$config['base_url'] = 'http://localhost/linegym-2.0/';
+// $config['base_url'] = 'http://localhost/linegym-2.0/';
 // HOSTING
 // $config['base_url'] = 'http://linegym.virtualtic.co/';
 //heroku
- // $config['base_url'] = 'https://linegym.herokuapp.com/';
+ $config['base_url'] = 'https://linegym.herokuapp.com/';
 /*
 |--------------------------------------------------------------------------
 | Index File
