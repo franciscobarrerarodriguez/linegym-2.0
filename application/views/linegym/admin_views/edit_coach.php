@@ -200,35 +200,37 @@
       </div>
 
     </form>
-
+    <br />
+    <!-- Footer -->
+    <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+    <!-- End Footer -->
   </div>
-
-  <script type="text/javascript">
-  // this is the id of the form
-  $("#updateCoachForm").submit(function(e) {
-    var url = "<?php echo site_url('linegym/admin/updateClient/')?><?php echo $coach->ID_PERSON?>"; // the script where you handle the form input.
-    $.ajax({
-      type: "POST",
-      url: url,
-      dataType: 'JSON',
-      data: $("#updateCoachForm").serialize(), // serializes the form's elements.
-      success: function(json){
-        if(json.STATUS == true){
-          toastr.success("Coach actualizado");
-          setTimeout(function(){
-            location.reload();
-          }, 1000);
-        }else {
-          toastr.error("Ocurrio un error al editar el coach.");
-          setTimeout(function(){
-            location.reload();
-          }, 1000);
-        }
-      }
-    });
-    e.preventDefault(); // avoid to execute the actual submit of the form.
-  });
-  </script>
-  <script src="<?php echo base_url('assets/neon/js/bootstrap-datepicker.js')?>"></script>
-
 </div> <!--End page-container -->
+
+<script type="text/javascript">
+// this is the id of the form
+$("#updateCoachForm").submit(function(e) {
+  var url = "<?php echo site_url('linegym/admin/updateClient/')?><?php echo $coach->ID_PERSON?>"; // the script where you handle the form input.
+  $.ajax({
+    type: "POST",
+    url: url,
+    dataType: 'JSON',
+    data: $("#updateCoachForm").serialize(), // serializes the form's elements.
+    success: function(json){
+      if(json.STATUS == true){
+        toastr.success("Coach actualizado");
+        setTimeout(function(){
+          location.reload();
+        }, 1000);
+      }else {
+        toastr.error("Ocurrio un error al editar el coach.");
+        setTimeout(function(){
+          location.reload();
+        }, 1000);
+      }
+    }
+  });
+  e.preventDefault(); // avoid to execute the actual submit of the form.
+});
+</script>
+<script src="<?php echo base_url('assets/neon/js/bootstrap-datepicker.js')?>"></script>

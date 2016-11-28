@@ -54,8 +54,8 @@
           <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../../assets/lineGym/img/profile.jpg" alt="" class="img-circle" width="44" />
-              <?php echo $this->session->userdata('NAME_PERSON')?>
+              <img src="<?php echo base_url('assets/lineGym/img/')?><?php echo $this->session->PROFILE_PICTURE ?>" alt="" class="img-circle" width="44" />
+              <?php echo $this->session->NAME_PERSON ?>
             </a>
 
             <ul class="dropdown-menu">
@@ -162,6 +162,7 @@
 
   </div>
 </div> <!--End page-container -->
+
 <script type="text/javascript">
 // this is the id of the form
 $("#newPlanForm").submit(function(e) {

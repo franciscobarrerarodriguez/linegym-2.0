@@ -250,187 +250,190 @@
         </div>
       </li>
     </ul>
-
+    <br />
+    <!-- Footer -->
+    <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+    <!-- End Footer -->
   </div><!-- End main Content -->
-  <!-- Modal 1 (Basic)-->
-  <div class="modal fade" id="modal-1">
+</div> <!--End page-container -->
+<!-- Modal 1 (Basic)-->
+<div class="modal fade" id="modal-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Registrar pago</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="field-1" class="control-label">Precio total</label>
+              <select name="plan" id="plan" data-rule-required="true" class="form-control" onchange="changePlan()">
+                <option value="SEL">Seleccionar</option>
+                <?php if ((isset($plans)) && (!empty($plans))){ ?>
+                  <?php foreach ($plans as $plan){ ?>
+                    <option value="<?php echo $plan->ID_PLAN?>"><?php echo $plan->NAME_PLAN?></option>
+                    <?php }
+                  } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group hidden" id="price">
+                <label for="field-2" class="control-label">Valor</label>
+                <input type="number" id="input_price" class="form-control" placeholder="$">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group hidden" id="paid">
+                <label for="field-3" class="control-label">Pago</label>
+                <input type="number" class="form-control" id="new-paid" placeholder="$">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-info" onclick="newSubscription()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End modal 1 -->
+  <!-- Modal 7 (Ajax Modal)-->
+  <div class="modal fade" id="modal-7">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Registrar pago</h4>
+          <h4 class="modal-title"><i class="fa fa-spinner fa-spin"></i> Pendiente Factura No #<a href="#"  id="invoice-number"></a></h4>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="field-1" class="control-label">Precio total</label>
-                <select name="plan" id="plan" data-rule-required="true" class="form-control" onchange="changePlan()">
-                  <option value="SEL">Seleccionar</option>
-                  <?php if ((isset($plans)) && (!empty($plans))){ ?>
-                    <?php foreach ($plans as $plan){ ?>
-                      <option value="<?php echo $plan->ID_PLAN?>"><?php echo $plan->NAME_PLAN?></option>
-                      <?php }
-                    } ?>
-                  </select>
-                </div>
+                <input class="hidden" name="id_invoice" id="id_invoice">
+                <input type="text" class="form-control" name="subscription-price" id="subscription-price" placeholder="#" disabled>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group hidden" id="price">
-                  <label for="field-2" class="control-label">Valor</label>
-                  <input type="number" id="input_price" class="form-control" placeholder="$">
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="field-2" class="control-label">Deuda</label>
+                <input type="text" class="form-control" name="debt" id="debt" placeholder="deuda" disabled="">
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group hidden" id="paid">
-                  <label for="field-3" class="control-label">Pago</label>
-                  <input type="number" class="form-control" id="new-paid" placeholder="$">
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="field-3" class="control-label">Pago</label>
+                <input type="number" class="form-control" name="subscription-paid" id="subscription-paid" placeholder="$">
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-info" onclick="newSubscription()">Guardar</button>
+            <button type="button" class="btn btn-info" onclick="makePayment()">Pagar</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- End modal 1 -->
-    <!-- Modal 7 (Ajax Modal)-->
-    <div class="modal fade" id="modal-7">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title"><i class="fa fa-spinner fa-spin"></i> Pendiente Factura No #<a href="#"  id="invoice-number"></a></h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="field-1" class="control-label">Precio total</label>
-                  <input class="hidden" name="id_invoice" id="id_invoice">
-                  <input type="text" class="form-control" name="subscription-price" id="subscription-price" placeholder="#" disabled>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="field-2" class="control-label">Deuda</label>
-                  <input type="text" class="form-control" name="debt" id="debt" placeholder="deuda" disabled="">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="field-3" class="control-label">Pago</label>
-                  <input type="number" class="form-control" name="subscription-paid" id="subscription-paid" placeholder="$">
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-info" onclick="makePayment()">Pagar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Modal 7 (Ajax Modal) -->
-    <script type="text/javascript">
-    function showAjaxModal(ID_SUBSCRIPTION){
-      $('#modal-7').modal('show', {backdrop: 'static'});
-      var url = "<?php echo site_url('linegym/admin/ajax_getSubscription/')?>"+ID_SUBSCRIPTION; // the script where you handle the form input.
-      $.ajax({
-        type: "POST",
-        url: url,
-        dataType: 'JSON',
-        success: function(json){
-          document.getElementById("id_invoice").value = json.ID_SUBSCRIPTION;
-          document.getElementById("invoice-number").innerHTML = json.ID_SUBSCRIPTION;
-          document.getElementById("subscription-price").value = json.PRICE;
-          document.getElementById("debt").value = (json.PRICE - json.PAID);
-        }
-      });
-    }
-    </script>
+  </div>
+  <!-- End Modal 7 (Ajax Modal) -->
 
-    <script type="text/javascript">
-    function makePayment() {
-      var data = {
-        'PAID': document.getElementById('subscription-paid').value
-      };
-      var url = "<?php echo site_url('linegym/admin/ajaxUpdateSubscription/')?>"+document.getElementById("id_invoice").value;
-      $.ajax({
-        url: url,
-        data: data,
-        type: "POST",
-        dataType: 'JSON',
-        success: function(json) {
-          if (json.STATUS == true) {
-            $('#modal-7').modal('toggle');
-            toastr.success("Suscripcion actualizada");
-            setTimeout(function(){
-              location.reload();
-            }, 1000);
-          }else{
-            toastr.error("No se puede actualizar la suscripcion");
-          }
-        }
-      });
-    }
-    </script>
-    <script type="text/javascript">
-    function changePlan() {
-      if (document.getElementById('plan').value != "SEL") {
-        $.ajax({
-          url:       "<?php echo site_url('linegym/admin/ajax_getPlanById/')?>"+document.getElementById('plan').value, // the script where you handle the form input.
-          type:      'GET',
-          dataType:  'JSON',
-          success:   function (json) {
-            document.getElementById("price").setAttribute("class" , 'form-group visible');
-            document.getElementById("input_price").value = json.PRICE;
-            document.getElementById("paid").setAttribute("class" , 'form-group visible');
-          }
-        });
-      }else {
-        document.getElementById("price").setAttribute("class" , 'form-group hidden');
-        document.getElementById("paid").setAttribute("class" , 'form-group hidden');
+
+  <script type="text/javascript">
+  function showAjaxModal(ID_SUBSCRIPTION){
+    $('#modal-7').modal('show', {backdrop: 'static'});
+    var url = "<?php echo site_url('linegym/admin/ajax_getSubscription/')?>"+ID_SUBSCRIPTION; // the script where you handle the form input.
+    $.ajax({
+      type: "POST",
+      url: url,
+      dataType: 'JSON',
+      success: function(json){
+        document.getElementById("id_invoice").value = json.ID_SUBSCRIPTION;
+        document.getElementById("invoice-number").innerHTML = json.ID_SUBSCRIPTION;
+        document.getElementById("subscription-price").value = json.PRICE;
+        document.getElementById("debt").value = (json.PRICE - json.PAID);
       }
-    }
-    </script>
+    });
+  }
+  </script>
 
-    <script type="text/javascript">
-    function newSubscription() {
-      var data = {
-        'ID_PLAN': document.getElementById('plan').value,
-        'PRICE'  : document.getElementById('input_price').value,
-        'PAID'   : document.getElementById('new-paid').value
-      };
-      var url = "<?php echo site_url('linegym/admin/newSubscription/')?><?php echo $client->ID_PERSON ?>";
+  <script type="text/javascript">
+  function makePayment() {
+    var data = {
+      'PAID': document.getElementById('subscription-paid').value
+    };
+    var url = "<?php echo site_url('linegym/admin/ajaxUpdateSubscription/')?>"+document.getElementById("id_invoice").value;
+    $.ajax({
+      url: url,
+      data: data,
+      type: "POST",
+      dataType: 'JSON',
+      success: function(json) {
+        if (json.STATUS == true) {
+          $('#modal-7').modal('toggle');
+          toastr.success("Suscripcion actualizada");
+          setTimeout(function(){
+            location.reload();
+          }, 300);
+        }else{
+          toastr.error("No se puede actualizar la suscripcion");
+        }
+      }
+    });
+  }
+  </script>
+  <script type="text/javascript">
+  function changePlan() {
+    if (document.getElementById('plan').value != "SEL") {
       $.ajax({
-        data: data,
-        url : url,
-        type: 'POST',
-        dataType: 'JSON',
-        success: function (json) {
-          if (json.STATUS == true) {
-            $('#modal-1').modal('toggle');
-            toastr.success("Pago registrado");
-            setTimeout(function(){
-              window.location.href = "<?php echo site_url('linegym/admin/view_invoice/')?>"+json.ID_SUBSCRIPTION;
-            }, 1000);
-          }else{
-            toastr.error("No se puede registar el pago");
-          }
+        url:       "<?php echo site_url('linegym/admin/ajax_getPlanById/')?>"+document.getElementById('plan').value, // the script where you handle the form input.
+        type:      'GET',
+        dataType:  'JSON',
+        success:   function (json) {
+          document.getElementById("price").setAttribute("class" , 'form-group visible');
+          document.getElementById("input_price").value = json.PRICE;
+          document.getElementById("paid").setAttribute("class" , 'form-group visible');
         }
       });
+    }else {
+      document.getElementById("price").setAttribute("class" , 'form-group hidden');
+      document.getElementById("paid").setAttribute("class" , 'form-group hidden');
     }
-    </script>
+  }
+  </script>
 
-
-  </div> <!--End page-container -->
+  <script type="text/javascript">
+  function newSubscription() {
+    var data = {
+      'ID_PLAN': document.getElementById('plan').value,
+      'PRICE'  : document.getElementById('input_price').value,
+      'PAID'   : document.getElementById('new-paid').value
+    };
+    var url = "<?php echo site_url('linegym/admin/newSubscription/')?><?php echo $client->ID_PERSON ?>";
+    $.ajax({
+      data: data,
+      url : url,
+      type: 'POST',
+      dataType: 'JSON',
+      success: function (json) {
+        if (json.STATUS == true) {
+          $('#modal-1').modal('toggle');
+          toastr.success("Pago registrado");
+          setTimeout(function(){
+            window.location.href = "<?php echo site_url('linegym/admin/view_invoice/')?>"+json.ID_SUBSCRIPTION;
+          }, 300);
+        }else{
+          toastr.error("No se puede registar el pago");
+        }
+      }
+    });
+  }
+  </script>

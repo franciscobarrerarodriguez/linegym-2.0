@@ -272,7 +272,10 @@
 
   </div>
   <!-- invoice end -->
-
+  <br>
+  <!-- Footer -->
+  <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+  <!-- End Footer -->
 </div>
 
 </div> <!--End page-container -->

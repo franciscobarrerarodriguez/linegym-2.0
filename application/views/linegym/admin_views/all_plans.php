@@ -55,8 +55,8 @@
           <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../../assets/lineGym/img/profile.jpg" alt="" class="img-circle" width="44" />
-              <?php echo $this->session->userdata('NAME_PERSON')?>
+              <img src="<?php echo base_url('assets/lineGym/img/')?><?php echo $this->session->PROFILE_PICTURE ?>" alt="" class="img-circle" width="44" />
+              <?php echo $this->session->NAME_PERSON ?>
             </a>
 
             <ul class="dropdown-menu">
@@ -138,85 +138,87 @@
     <div id="plans">
     </div>
 
-      <!-- Pager for search results -->
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="pager">
-            <li><a href="#"><i class="entypo-left-thin"></i> Previous</a></li>
-            <li><a href="#">Next <i class="entypo-right-thin"></i></a></li>
-          </ul>
-        </div>
+    <!-- Pager for search results -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="pager">
+          <li><a href="#"><i class="entypo-left-thin"></i> Previous</a></li>
+          <li><a href="#">Next <i class="entypo-right-thin"></i></a></li>
+        </ul>
       </div>
-
-
     </div>
 
-    <script type="text/javascript">
-    function renderPlans() {
-      var url = "<?php echo site_url('linegym/admin/ajaxPlan_list')?>";
-      $.ajax({
-        type: "GET",
-        url: url,
-        dataType: 'JSON',
-        success: function (json) {
-          var html = json.map(function (plan, index) {
+    <!-- Footer -->
+    <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+    <!-- End Footer -->
+  </div>
+</div> <!--End page-container -->
+<script type="text/javascript">
+function renderPlans() {
+  var url = "<?php echo site_url('linegym/admin/ajaxPlan_list')?>";
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: 'JSON',
+    success: function (json) {
+      var html = json.map(function (plan, index) {
         return(`<!-- Single Member -->
           <div class="member-entry">
-            <div class="member-details">
-              <h4>
-                <a href="#">${plan.NAME_PLAN}</a>
-                <i class="fa fa-times-circle"  onclick="deletePlan(${plan.ID_PLAN})" style="cursor:pointer;"></i>
-                <a href="<?php echo site_url('linegym/admin/edit_plan/')?>${plan.ID_PLAN}"><i class="fa fa-pencil"></i></a>
-              </h4>
+          <div class="member-details">
+          <h4>
+          <a href="#">${plan.NAME_PLAN}</a>
+          <i class="fa fa-times-circle"  onclick="deletePlan(${plan.ID_PLAN})" style="cursor:pointer;"></i>
+          <a href="<?php echo site_url('linegym/admin/edit_plan/')?>${plan.ID_PLAN}"><i class="fa fa-pencil"></i></a>
+          </h4>
 
-              <!-- Details with Icons -->
-              <div class="row info-list">
-                <div class="col-sm-4">
-                  <i class="entypo-calendar"></i>
-                  Creado <a href="#">${plan.JOINING_PLAN}</a>
-                </div>
-                <div class="col-sm-4">
-                  <i class="fa fa-money"></i>
-                  <a href="#">${plan.PRICE }</a> pesos
-                </div>
-                <div class="col-sm-4">
-                  <i class="fa fa-clock-o"></i>
-                  <a href="#">${plan.DAYS}</a> dias de duracion
-                </div>
-              </div>
-               <div class="row info-list">
-                <div class="col-sm-4">
-                  <i class="fa fa-info"></i>
-                  <a href="#">${plan.DETAILS}</a>
-                </div>
-              </div>
-             </div>
-           </div>`);
+          <!-- Details with Icons -->
+          <div class="row info-list">
+          <div class="col-sm-4">
+          <i class="entypo-calendar"></i>
+          Creado <a href="#">${plan.JOINING_PLAN}</a>
+          </div>
+          <div class="col-sm-4">
+          <i class="fa fa-money"></i>
+          <a href="#">${plan.PRICE }</a> pesos
+          </div>
+          <div class="col-sm-4">
+          <i class="fa fa-clock-o"></i>
+          <a href="#">${plan.DAYS}</a> dias de duracion
+          </div>
+          </div>
+          <div class="row info-list">
+          <div class="col-sm-4">
+          <i class="fa fa-info"></i>
+          <a href="#">${plan.DETAILS}</a>
+          </div>
+          </div>
+          </div>
+          </div>`);
         }).join("");
         document.getElementById('plans').innerHTML = html;
-        }
-      });
-    }
-    renderPlans();
-    </script>
-
-    <script type="text/javascript">
-      function deletePlan(ID_PLAN) {
-        var url = "<?php echo site_url('linegym/admin/ajaxDelete_plan/')?>"+ID_PLAN;
-        $.ajax({
-          type: "POST",
-          url: url,
-          dataType: 'JSON',
-          success: function(json) {
-            if (json.STATUS == true) {
-              toastr.success("Plan borrado");
-              renderPlans();
-            }else{
-              toastr.danger("Ocurrio un error al borrar.");
-            }
-          }
-        });
       }
-    </script>
+    });
+  }
+  renderPlans();
+  </script>
 
-  </div> <!--End page-container -->
+  <script type="text/javascript">
+  function deletePlan(ID_PLAN) {
+    var url = "<?php echo site_url('linegym/admin/ajaxDelete_plan/')?>"+ID_PLAN;
+    $.ajax({
+      type: "POST",
+      url: url,
+      dataType: 'JSON',
+      success: function(json) {
+        if (json.STATUS == true) {
+          toastr.success("Plan borrado");
+          setTimeout(function () {
+            location.reload();
+          },300);
+        }else{
+          toastr.danger("Ocurrio un error al borrar.");
+        }
+      }
+    });
+  }
+  </script>

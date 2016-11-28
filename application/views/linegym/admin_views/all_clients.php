@@ -185,92 +185,93 @@
         </div>
       </div>
 
-
+      <br />
+      <!-- Footer -->
+      <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+      <!-- End Footer -->
     </div>
-
-    <script type="text/javascript">
-    function renderClients() {
-      var url = "<?php echo site_url('linegym/admin/ajaxClient_list')?>";
-      $.ajax({
-        type: "GET",
-        url: url,
-        dataType: 'JSON',
-        success: function (json) {
-          var html = json.map(function (client, index) {
-        return(`<!-- Single Member -->
-          <div class="member-entry">
-            <a href="" class="member-img">
-              <img src="<?php echo base_url('assets/lineGym/img/')?>${client.PROFILE_PICTURE}" class="img-rounded" />
-              <i class="entypo-forward"></i>
-            </a>
-            <div class="member-details">
-              <h4>
-                <a href="extra-timeline.html">${client.NAME_PERSON}</a>
-                <i class="fa fa-times-circle"  onclick="deleteClient(${client.ID_PERSON})" style="cursor:pointer;"></i>
-                <a href="<?php echo site_url('linegym/admin/edit_client/')?>${client.ID_PERSON}"><i class="fa fa-pencil"></i></a>
-              </h4>
-              <!-- Details with Icons -->
-              <div class="row info-list">
-                <div class="col-sm-4">
-                  <i class="entypo-phone"></i>
-                  <a href="#">${client.PHONE_PERSON}</a>
-                </div>
-                <div class="col-sm-4">
-                  <i class="fa fa-id-card-o"></i>
-                  <a href="#">${client.IDENTIFICATION}</a>
-                </div>
-                <div class="col-sm-4">
-                  <i class="entypo-calendar"></i>
-                  Desde <a href="#">${client.JOINING_PERSON}</a>
-                </div>
-                <div class="clear"></div>
-                <div class="col-sm-4">
-                  <i class="entypo-location"></i>
-                  <a href="#">${client.ADDRESS_PERSON}</a>
-                </div>
-                <div class="col-sm-4">
-                  <i class="entypo-mail"></i>
-                  <a href="#">${client.EMAIL_PERSON}</a>
-                </div>
-                <div class="col-sm-4">
-                  <i class="fa fa-birthday-cake"></i>
-                  <a href="#">${client.BIRTHDATE_PERSON}</a>
-                </div>
-                <div class="col-sm-4">
-                  <a href="<?php echo site_url('linegym/admin/record/')?>${client.ID_PERSON}" class="btn btn-green btn-icon icon-left"> Historial <i class="fa fa-folder-open"></i></a>
-                </div>
+  </div> <!--End page-container -->
+  <script type="text/javascript">
+  function renderClients() {
+    var url = "<?php echo site_url('linegym/admin/ajaxClient_list')?>";
+    $.ajax({
+      type: "GET",
+      url: url,
+      dataType: 'JSON',
+      success: function (json) {
+        var html = json.map(function (client, index) {
+      return(`<!-- Single Member -->
+        <div class="member-entry">
+          <a href="" class="member-img">
+            <img src="<?php echo base_url('assets/lineGym/img/')?>${client.PROFILE_PICTURE}" class="img-rounded" />
+            <i class="entypo-forward"></i>
+          </a>
+          <div class="member-details">
+            <h4>
+              <a href="extra-timeline.html">${client.NAME_PERSON}</a>
+              <i class="fa fa-times-circle"  onclick="deleteClient(${client.ID_PERSON})" style="cursor:pointer;"></i>
+              <a href="<?php echo site_url('linegym/admin/edit_client/')?>${client.ID_PERSON}"><i class="fa fa-pencil"></i></a>
+            </h4>
+            <!-- Details with Icons -->
+            <div class="row info-list">
+              <div class="col-sm-4">
+                <i class="entypo-phone"></i>
+                <a href="#">${client.PHONE_PERSON}</a>
+              </div>
+              <div class="col-sm-4">
+                <i class="fa fa-id-card-o"></i>
+                <a href="#">${client.IDENTIFICATION}</a>
+              </div>
+              <div class="col-sm-4">
+                <i class="entypo-calendar"></i>
+                Desde <a href="#">${client.JOINING_PERSON}</a>
+              </div>
+              <div class="clear"></div>
+              <div class="col-sm-4">
+                <i class="entypo-location"></i>
+                <a href="#">${client.ADDRESS_PERSON}</a>
+              </div>
+              <div class="col-sm-4">
+                <i class="entypo-mail"></i>
+                <a href="#">${client.EMAIL_PERSON}</a>
+              </div>
+              <div class="col-sm-4">
+                <i class="fa fa-birthday-cake"></i>
+                <a href="#">${client.BIRTHDATE_PERSON}</a>
+              </div>
+              <div class="col-sm-4">
+                <a href="<?php echo site_url('linegym/admin/record/')?>${client.ID_PERSON}" class="btn btn-green btn-icon icon-left"> Historial <i class="fa fa-folder-open"></i></a>
               </div>
             </div>
-
           </div>
-          `);
-        }).join("");
-        document.getElementById('clients').innerHTML = html;
+
+        </div>
+        `);
+      }).join("");
+      document.getElementById('clients').innerHTML = html;
+      }
+    });
+  }
+  renderClients();
+  </script>
+
+  <script type="text/javascript">
+    function deleteClient(ID_PERSON) {
+      var url = "<?php echo site_url('linegym/admin/ajaxDelete_client/')?>"+ID_PERSON;
+      $.ajax({
+        type: "POST",
+        url: url,
+        dataType: 'JSON',
+        success: function(json) {
+          if (json.STATUS == true) {
+            toastr.success("Cliente borrado");
+            setTimeout(function () {
+              location.reload();
+            }, 1000);
+          }else{
+            toastr.error("Ocurrio un error al borrar.");
+          }
         }
       });
     }
-    renderClients();
-    </script>
-
-    <script type="text/javascript">
-      function deleteClient(ID_PERSON) {
-        var url = "<?php echo site_url('linegym/admin/ajaxDelete_client/')?>"+ID_PERSON;
-        $.ajax({
-          type: "POST",
-          url: url,
-          dataType: 'JSON',
-          success: function(json) {
-            if (json.STATUS == true) {
-              toastr.success("Cliente borrado");
-              setTimeout(function () {
-                location.reload();
-              }, 1000);
-            }else{
-              toastr.error("Ocurrio un error al borrar.");
-            }
-          }
-        });
-      }
-    </script>
-
-  </div> <!--End page-container -->
+  </script>

@@ -185,89 +185,90 @@
       </div>
     </div>
 
-
+    <br />
+    <!-- Footer -->
+    <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+    <!-- End Footer -->
   </div>
+</div> <!--End page-container -->
+<script type="text/javascript">
+function renderCoaches() {
+  var url = "<?php echo site_url('linegym/admin/ajaxCoach_list')?>";
+  $.ajax({
+    type: "GET",
+    url: url,
+    dataType: 'JSON',
+    success: function (json) {
+      var html = json.map(function (coach, index) {
+        return(`<!-- Single Member -->
+          <div class="member-entry">
+          <a href="" class="member-img">
+          <img src="<?php echo base_url('assets/lineGym/img/')?>${coach.PROFILE_PICTURE}" class="img-rounded" />
+          <i class="entypo-forward"></i>
+          </a>
+          <div class="member-details">
+          <h4>
+          <a href="extra-timeline.html">${coach.NAME_PERSON}</a>
+          <i class="fa fa-times-circle"  onclick="deleteCoach(${coach.ID_PERSON})" style="cursor:pointer;"></i>
+          <a href="<?php echo site_url('linegym/admin/edit_coach/')?>${coach.ID_PERSON}"><i class="fa fa-pencil"></i></a>
+          </h4>
+          <!-- Details with Icons -->
+          <div class="row info-list">
+          <div class="col-sm-4">
+          <i class="entypo-phone"></i>
+          <a href="#">${coach.PHONE_PERSON}</a>
+          </div>
+          <div class="col-sm-4">
+          <i class="fa fa-id-card-o"></i>
+          <a href="#">${coach.IDENTIFICATION}</a>
+          </div>
+          <div class="col-sm-4">
+          <i class="entypo-calendar"></i>
+          Desde <a href="#">${coach.JOINING_PERSON}</a>
+          </div>
+          <div class="clear"></div>
+          <div class="col-sm-4">
+          <i class="entypo-location"></i>
+          <a href="#">${coach.ADDRESS_PERSON}</a>
+          </div>
+          <div class="col-sm-4">
+          <i class="entypo-mail"></i>
+          <a href="#">${coach.EMAIL_PERSON}</a>
+          </div>
+          <div class="col-sm-4">
+          <i class="fa fa-birthday-cake"></i>
+          <a href="#">${coach.BIRTHDATE_PERSON}</a>
+          </div>
+          </div>
+          </div>
+
+          </div>
+          `);
+        }).join("");
+        document.getElementById('coaches').innerHTML = html;
+      }
+    });
+  }
+  renderCoaches();
+  </script>
 
   <script type="text/javascript">
-  function renderCoaches() {
-    var url = "<?php echo site_url('linegym/admin/ajaxCoach_list')?>";
+  function deleteCoach(ID_PERSON) {
+    var url = "<?php echo site_url('linegym/admin/ajaxDelete_coach/')?>"+ID_PERSON;
     $.ajax({
-      type: "GET",
+      type: "POST",
       url: url,
       dataType: 'JSON',
-      success: function (json) {
-        var html = json.map(function (coach, index) {
-          return(`<!-- Single Member -->
-            <div class="member-entry">
-            <a href="" class="member-img">
-            <img src="<?php echo base_url('assets/lineGym/img/')?>${coach.PROFILE_PICTURE}" class="img-rounded" />
-            <i class="entypo-forward"></i>
-            </a>
-            <div class="member-details">
-            <h4>
-            <a href="extra-timeline.html">${coach.NAME_PERSON}</a>
-            <i class="fa fa-times-circle"  onclick="deleteCoach(${coach.ID_PERSON})" style="cursor:pointer;"></i>
-            <a href="<?php echo site_url('linegym/admin/edit_coach/')?>${coach.ID_PERSON}"><i class="fa fa-pencil"></i></a>
-            </h4>
-            <!-- Details with Icons -->
-            <div class="row info-list">
-            <div class="col-sm-4">
-            <i class="entypo-phone"></i>
-            <a href="#">${coach.PHONE_PERSON}</a>
-            </div>
-            <div class="col-sm-4">
-            <i class="fa fa-id-card-o"></i>
-            <a href="#">${coach.IDENTIFICATION}</a>
-            </div>
-            <div class="col-sm-4">
-            <i class="entypo-calendar"></i>
-            Desde <a href="#">${coach.JOINING_PERSON}</a>
-            </div>
-            <div class="clear"></div>
-            <div class="col-sm-4">
-            <i class="entypo-location"></i>
-            <a href="#">${coach.ADDRESS_PERSON}</a>
-            </div>
-            <div class="col-sm-4">
-            <i class="entypo-mail"></i>
-            <a href="#">${coach.EMAIL_PERSON}</a>
-            </div>
-            <div class="col-sm-4">
-            <i class="fa fa-birthday-cake"></i>
-            <a href="#">${coach.BIRTHDATE_PERSON}</a>
-            </div>
-            </div>
-            </div>
-
-            </div>
-            `);
-          }).join("");
-          document.getElementById('coaches').innerHTML = html;
+      success: function(json) {
+        if (json.STATUS == true) {
+          toastr.success("Coach borrado");
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
+        }else{
+          toastr.error("Ocurrio un error al borrar.");
         }
-      });
-    }
-    renderCoaches();
-    </script>
-
-    <script type="text/javascript">
-    function deleteCoach(ID_PERSON) {
-      var url = "<?php echo site_url('linegym/admin/ajaxDelete_coach/')?>"+ID_PERSON;
-      $.ajax({
-        type: "POST",
-        url: url,
-        dataType: 'JSON',
-        success: function(json) {
-          if (json.STATUS == true) {
-            toastr.success("Coach borrado");
-            setTimeout(function () {
-              location.reload();
-            }, 1000);
-          }else{
-            toastr.error("Ocurrio un error al borrar.");
-          }
-        }
-      });
-    }
-    </script>
-
-  </div> <!--End page-container -->
+      }
+    });
+  }
+  </script>

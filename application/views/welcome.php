@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="shortcut icon" href="<?php echo base_url('assets/lineGym/img/')?>favicon.ico" type="image/x-icon">
+  <link rel="icon" href="<?php echo base_url('assets/lineGym/img/')?>favicon.ico" type="image/x-icon">
   <title>Line Gym</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+  <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"> -->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/MaterialDesingLite/material.min.css')?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/font-awesome/css/font-awesome.min.css')?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/lineGym/css/lineGym.css')?>">
@@ -119,6 +121,8 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-1.11.3.min.js" integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g=" crossorigin="anonymous"></script>
+  <!-- <script src="<?php echo base_url('assets/neon/js/jquery-1.11.0.min.js')?>"></script> -->
+
   <script type="text/javascript" src="<?php echo base_url('assets/MaterialDesingLite/material.min.js')?>"></script>
 </body>
 </html>

@@ -182,36 +182,38 @@
           <input type="text" name="identification" id="identification" class="form-control" data-rule-minlength="20" placeholder="#  de identificacion">
         </div>
       </div>
-        <div class="form-group">
-          <div class="col-sm-offset-3 col-sm-5">
-            <button type="submit" class="btn btn-primary" id="btnvalidation">Guardar</button>
-          </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-5">
+          <button type="submit" class="btn btn-primary" id="btnvalidation">Guardar</button>
         </div>
-      </form>
+      </div>
+    </form>
+    <br />
+    <!-- Footer -->
+    <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+    <!-- End Footer -->
+  </div>
+</div> <!--End page-container -->
+<script type="text/javascript">
+// this is the id of the form
+$("#newCoachForm").submit(function(e) {
+  var url = "<?php echo site_url('linegym/admin/newCoach')?>"; // the script where you handle the form input.
+  $.ajax({
+    type: "POST",
+    url: url,
+    dataType: 'JSON',
+    data: $("#newCoachForm").serialize(), // serializes the form's elements.
+    success: function(json){
+      if(json.STATUS == true){
+        toastr.success("Coach agregado");
+        $("#newCoachForm").trigger('reset');
+      }else {
+        toastr.danger("Ocurrio un error al agregar el coach, verifica la informacion.");
+      }
+    }
+  });
+  e.preventDefault(); // avoid to execute the actual submit of the form.
+});
+</script>
 
-    </div>
-
-    <script type="text/javascript">
-    // this is the id of the form
-    $("#newCoachForm").submit(function(e) {
-      var url = "<?php echo site_url('linegym/admin/newCoach')?>"; // the script where you handle the form input.
-      $.ajax({
-        type: "POST",
-        url: url,
-        dataType: 'JSON',
-        data: $("#newCoachForm").serialize(), // serializes the form's elements.
-        success: function(json){
-          if(json.STATUS == true){
-            toastr.success("Coach agregado");
-            $("#newCoachForm").trigger('reset');
-            }else {
-              toastr.danger("Ocurrio un error al agregar el coach, verifica la informacion.");
-            }
-          }
-        });
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-      });
-      </script>
-
-      <script src="<?php echo base_url('assets/neon/js/bootstrap-datepicker.js')?>"></script>
-    </div> <!--End page-container -->
+<script src="<?php echo base_url('assets/neon/js/bootstrap-datepicker.js')?>"></script>

@@ -3,21 +3,22 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+	<link rel="shortcut icon" href="<?php echo base_url('assets/lineGym/img/')?>favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?php echo base_url('assets/lineGym/img/')?>favicon.ico" type="image/x-icon">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="Neon Admin Panel" />
 	<meta name="author" content="" />
 
 	<title>LineGym</title>
 
-	<link rel="stylesheet" href="<?php echo base_url('assets/neon/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css')?>">
+	<!-- <link rel="stylesheet" href="<?php echo base_url('assets/neon/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css')?>"> -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/neon/css/font-icons/entypo/css/entypo.css')?>">
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"> -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/neon/css/bootstrap.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/neon/css/neon-core.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/neon/css/neon-theme.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('assets/neon/css/neon-forms.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('assets/neon/css/custom.css')?>">
+	<!-- <link rel="stylesheet" href="<?php echo base_url('assets/neon/css/custom.css')?>"> -->
+	<!-- <link rel="stylesheet" href="<?php echo base_url('assets/neon/css/neon-forms.css')?>"> -->
 
 	<script src="<?php echo base_url('assets/neon/js/jquery-1.11.0.min.js')?>"></script>
 	<!--	<script>$.noConflict();</script>-->
@@ -103,101 +104,63 @@
 							Ingresar
 						</button>
 					</div>
+				</form>
 
-					<!-- Implemented in v1.1.4 -->
-					<!--	<div class="form-group">
-					<em>- or -</em>
+
+				<div class="login-bottom-links">
+
+					<a href="extra-forgot-password.html" class="link">Forgot your password?</a>
+
+					<br />
+
 				</div>
 
-				<div class="form-group">
+			</div>
 
-				<button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left facebook-button">
-				Login with Facebook
-				<i class="entypo-facebook"></i>
-			</button>
+		</div>
 
-		</div> -->
+	</div>
 
-		<!--
-
-		You can also use other social network buttons
-		<div class="form-group">
-
-		<button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left twitter-button">
-		Login with Twitter
-		<i class="entypo-twitter"></i>
-	</button>
-
-</div>
-
-<div class="form-group">
-
-<button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left google-button">
-Login with Google+
-<i class="entypo-gplus"></i>
-</button>
-
-</div> -->
-
-</form>
-
-
-<div class="login-bottom-links">
-
-	<a href="extra-forgot-password.html" class="link">Forgot your password?</a>
-
-	<br />
-
-	<!--<a href="#">ToS</a>  - <a href="#">Privacy Policy</a>-->
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script type="text/javascript">
-// this is the id of the form
-$("#start").submit(function(e) {
-	var url = "<?php echo site_url('linegym/login/start')?>"; // the script where you handle the form input.
-	$.ajax({
-		type: "POST",
-		url: url,
-		dataType: 'JSON',
-		data: $("#start").serialize(), // serializes the form's elements.
-		success: function(json)
-		{
-			if(json.STATUS == true){
-				window.location.href = "<?php echo site_url('welcome')?>";
-			}else {
-				location.reload();
+	<script type="text/javascript">
+	// this is the id of the form
+	$("#start").submit(function(e) {
+		var url = "<?php echo site_url('linegym/login/start')?>"; // the script where you handle the form input.
+		$.ajax({
+			type: "POST",
+			url: url,
+			dataType: 'JSON',
+			data: $("#start").serialize(), // serializes the form's elements.
+			success: function(json)
+			{
+				if(json.STATUS == true){
+					window.location.href = "<?php echo site_url('welcome')?>";
+				}else {
+					location.reload();
+				}
 			}
-		}
+		});
+		e.preventDefault(); // avoid to execute the actual submit of the form.
 	});
-	e.preventDefault(); // avoid to execute the actual submit of the form.
-});
-</script>
+	</script>
 
 
-<!-- Bottom scripts (common) -->
-<script src="<?php echo base_url('assets/neon/js/gsap/main-gsap.js')?>"></script>
-<script src="<?php echo base_url('assets/neon/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js')?>"></script>
-<script src="<?php echo base_url('assets/neon/js/bootstrap.js')?>"></script>
-<script src="<?php echo base_url('assets/neon/js/joinable.js')?>"></script>
-<script src="<?php echo base_url('assets/neon/js/resizeable.js')?>"></script>
-<script src="<?php echo base_url('assets/neon/js/neon-api.js')?>"></script>
-<script src="<?php echo base_url('assets/neon/js/jquery.validate.min.js')?>"></script>
-<script src="<?php echo base_url('assets/neon/js/neon-login.js')?>"></script>
+	<!-- Bottom scripts (common) -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/gsap/main-gsap.js')?>"></script> -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js')?>"></script> -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/bootstrap.js')?>"></script> -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/joinable.js')?>"></script> -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/resizeable.js')?>"></script> -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/neon-api.js')?>"></script> -->
+	<script src="<?php echo base_url('assets/neon/js/jquery.validate.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/neon/js/neon-login.js')?>"></script>
 
 
-<!-- JavaScripts initializations and stuff -->
-<script src="<?php echo base_url('assets/neon/js/neon-custom.js')?>"></script>
+	<!-- JavaScripts initializations and stuff -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/neon-custom.js')?>"></script> -->
 
 
-<!-- Demo Settings -->
-<script src="<?php echo base_url('assets/neon/js/neon-demo.js')?>"></script>
+	<!-- Demo Settings -->
+	<!-- <script src="<?php echo base_url('assets/neon/js/neon-demo.js')?>"></script> -->
 
 </body>
 </html>

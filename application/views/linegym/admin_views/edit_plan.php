@@ -55,8 +55,8 @@
           <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../../../assets/lineGym/img/profile.jpg" alt="" class="img-circle" width="44" />
-              <?php echo $this->session->userdata('NAME_PERSON')?>
+              <img src="<?php echo base_url('assets/lineGym/img/')?><?php echo $this->session->PROFILE_PICTURE ?>" alt="" class="img-circle" width="44" />
+              <?php echo $this->session->NAME_PERSON ?>
             </a>
 
             <ul class="dropdown-menu">
@@ -156,14 +156,17 @@
       </div>
 
     </form>
-
+    <br>
+    <!-- Footer -->
+    <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+    <!-- End Footer -->
   </div>
 
   <script type="text/javascript">
   // this is the id of the form
   $("#updatePlanForm").submit(function(e) {
     var url = "<?php echo site_url('linegym/admin/updatePlan/')?><?php echo $plan->ID_PLAN?>";
-     // the script where you handle the form input.
+    // the script where you handle the form input.
     $.ajax({
       type: "POST",
       url: url,
@@ -175,12 +178,12 @@
           toastr.success("Plan actualizado");
           setTimeout(function(){
             location.reload();
-            }, 1000);
+          }, 1000);
         }else {
           toastr.error("Ocurrio un error al editar el plan.");
           setTimeout(function(){
             location.reload();
-            }, 1000);
+          }, 1000);
         }
       }
     });

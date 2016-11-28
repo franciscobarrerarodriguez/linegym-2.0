@@ -3,13 +3,13 @@
 				<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
         <li id="menu_home">
           <a href="<?php echo site_url('linegym/admin')?>">
-            <i class="entypo-home"></i>
+            <i class="fa fa-home"></i>
             <span class="title">Home</span>
           </a>
         </li>
 				<li id="menu_plan">
 					<a href="#">
-						<i class="entypo-quote"></i>
+						<i class="fa fa-bookmark"></i>
 						<span class="title">Planes</span>
 					</a>
 					<ul>
@@ -27,7 +27,7 @@
 				</li>
         <li id="menu_client">
 					<a href="#">
-						<i class="entypo-user-add"></i>
+						<i class="fa fa-group"></i>
 						<span class="title">Clientes</span>
 					</a>
 					<ul>
@@ -45,7 +45,7 @@
 				</li>
         <li id="menu_coach">
 					<a href="#">
-						<i class="fa fa-binoculars"></i>
+						<i class="entypo-user"></i>
 						<span class="title">Coaches</span>
 					</a>
 					<ul>

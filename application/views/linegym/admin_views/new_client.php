@@ -57,8 +57,8 @@
           <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../../assets/lineGym/img/profile.jpg" alt="" class="img-circle" width="44" />
-              <?php echo $this->session->userdata('NAME_PERSON')?>
+              <img src="<?php echo base_url('assets/lineGym/img/')?><?php echo $this->session->PROFILE_PICTURE ?>" alt="" class="img-circle" width="44" />
+              <?php echo $this->session->NAME_PERSON ?>
             </a>
 
             <ul class="dropdown-menu">
@@ -218,55 +218,58 @@
         </div>
 
       </form>
-
+      <br>
+      <!-- Footer -->
+      <footer class="main"> &copy; 2016 <strong>Line Gym</strong></footer>
+      <!-- End Footer -->
     </div>
-
-    <script type="text/javascript">
-    // this is the id of the form
-    $("#newClientForm").submit(function(e) {
-      var url = "<?php echo site_url('linegym/admin/newClient')?>"; // the script where you handle the form input.
-      $.ajax({
-        type: "POST",
-        url: url,
-        dataType: 'JSON',
-        data: $("#newClientForm").serialize(), // serializes the form's elements.
-        success: function(json){
-          if(json.STATUS == true){
-            toastr.success("Cliente agregado");
-            $("#newClientForm").trigger('reset');
-            document.getElementById("price").setAttribute("class" , 'form-group hidden');
-            document.getElementById("paid").setAttribute("class" , 'form-group hidden');
-            setTimeout(function(){
-                window.location.href = "<?php echo site_url('linegym/admin/view_invoice/')?>"+json.ID_SUBSCRIPTION;
-              }, 1000);
-            }else {
-              toastr.danger("Ocurrio un error al agregar el cliente, verifica la informacion.");
-            }
-          }
-        });
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-      });
-      </script>
-
-      <script type="text/javascript">
-      function changePlan() {
-        if (document.getElementById('plan').value != "SEL") {
-          $.ajax({
-            url:       "<?php echo site_url('linegym/admin/ajax_getPlanById/')?>"+document.getElementById('plan').value, // the script where you handle the form input.
-            type:      'GET',
-            dataType:  'JSON',
-            success:   function (json) {
-              document.getElementById("price").setAttribute("class" , 'form-group visible');
-              document.getElementById("input_price").value = json.PRICE;
-              document.getElementById("paid").setAttribute("class" , 'form-group visible');
-            }
-          });
-        }else {
+  </div> <!--End page-container -->
+  
+  <script type="text/javascript">
+  // this is the id of the form
+  $("#newClientForm").submit(function(e) {
+    var url = "<?php echo site_url('linegym/admin/newClient')?>"; // the script where you handle the form input.
+    $.ajax({
+      type: "POST",
+      url: url,
+      dataType: 'JSON',
+      data: $("#newClientForm").serialize(), // serializes the form's elements.
+      success: function(json){
+        if(json.STATUS == true){
+          toastr.success("Cliente agregado");
+          $("#newClientForm").trigger('reset');
           document.getElementById("price").setAttribute("class" , 'form-group hidden');
           document.getElementById("paid").setAttribute("class" , 'form-group hidden');
+          setTimeout(function(){
+            window.location.href = "<?php echo site_url('linegym/admin/view_invoice/')?>"+json.ID_SUBSCRIPTION;
+          }, 1000);
+        }else {
+          toastr.danger("Ocurrio un error al agregar el cliente, verifica la informacion.");
         }
       }
-      </script>
+    });
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+  });
+  </script>
 
-      <script src="<?php echo base_url('assets/neon/js/bootstrap-datepicker.js')?>"></script>
-    </div> <!--End page-container -->
+  <script type="text/javascript">
+  function changePlan() {
+    if (document.getElementById('plan').value != "SEL") {
+      $.ajax({
+        url:       "<?php echo site_url('linegym/admin/ajax_getPlanById/')?>"+document.getElementById('plan').value, // the script where you handle the form input.
+        type:      'GET',
+        dataType:  'JSON',
+        success:   function (json) {
+          document.getElementById("price").setAttribute("class" , 'form-group visible');
+          document.getElementById("input_price").value = json.PRICE;
+          document.getElementById("paid").setAttribute("class" , 'form-group visible');
+        }
+      });
+    }else {
+      document.getElementById("price").setAttribute("class" , 'form-group hidden');
+      document.getElementById("paid").setAttribute("class" , 'form-group hidden');
+    }
+  }
+  </script>
+
+  <script src="<?php echo base_url('assets/neon/js/bootstrap-datepicker.js')?>"></script>
