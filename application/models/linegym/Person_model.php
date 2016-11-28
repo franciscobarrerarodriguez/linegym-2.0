@@ -103,6 +103,21 @@ class Person_model extends CI_Model {
   }
 
   /*
+  Retorna todas las personas que son coaches de un box especifico,
+  identificandolo por su ID.
+  */
+  public function coachList($id_box){
+    $this->db->where('ID_BOX', $id_box);
+    $this->db->where('TYPE_PERSON', 'COA');
+    $query = $this->db->get($this->table);
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    }else{
+      return false;
+    }
+  }
+
+  /*
   Clientes activos
   */
   public function getActiveClientList($id_box) {
@@ -124,7 +139,6 @@ class Person_model extends CI_Model {
     }
   }
 
-
   /*
   Retorna todas las personas que son coaches de un box especifico,
   identificandolo por su ID.
@@ -139,8 +153,6 @@ class Person_model extends CI_Model {
       return false;
     }
   }
-
-
 
   /*
   Calcula la edad de una persona dependiendo de su fecha de nacimiento.

@@ -33,7 +33,7 @@
       <?php	$this->load->view('linegym/admin_views/admin_nav'); ?>
       <script>
       function addClassActive(){
-        document.getElementById("id_plan").setAttribute("class" , 'active');
+        document.getElementById("menu_plan").setAttribute("class" , 'active');
       }
       addClassActive();
       </script>

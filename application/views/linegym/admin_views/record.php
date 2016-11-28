@@ -35,10 +35,10 @@
 
       <?php	$this->load->view('linegym/admin_views/admin_nav'); ?>
       <script>
-      // function addClassActive(){
-      //   document.getElementById("id_plan").setAttribute("class" , 'active');
-      // }
-      // addClassActive();
+      function addClassActive(){
+        document.getElementById("menu_client").setAttribute("class" , 'active');
+      }
+      addClassActive();
       </script>
 
     </div>

@@ -371,12 +371,78 @@ class Admin extends CI_Controller {
 		echo json_encode(array('STATUS' => $success, 'ID_SUBSCRIPTION' => $last_subscription->ID_SUBSCRIPTION));
 	}
 
-/*
-Carga la vista para ingresar un nuevo coach.
-*/
+	/*
+	Carga la vista para ingresar un nuevo coach.
+	*/
 	public function view_new_coach(){
 		$this->load->view('linegym/header');
 		$this->load->view('linegym/admin_views/new_coach');
+		$this->load->view('linegym/footer');
+	}
+
+	/*
+	Agrega un nuevo coach
+	*/
+	public function newCoach(){
+		$success = false;
+		$person = array(
+			'ID_BOX'           => $this->session->ID_BOX,
+			'JOINING_PERSON'   => date('Y-m-d'),
+			'NAME_PERSON'      => $this->input->post('name_person'),
+			'GENDER_PERSON'    => $this->input->post('gender_person'),
+			'BIRTHDATE_PERSON' => $this->input->post('birthdate_person'),
+			'AGE_PERSON'       => $this->Person_model->age($this->input->post('birthdate_person')),
+			'EMAIL_PERSON'     => $this->input->post('email_person'),
+			'PHONE_PERSON'     => $this->input->post('phone_person'),
+			'ADDRESS_PERSON'   => $this->input->post('address_person'),
+			'IDENTIFICATION'   => $this->input->post('identification'),
+			'PASSWORD_PERSON'  => md5($this->input->post('identification')),
+			'STATUS_PERSON'    => 'ACT',
+			'TYPE_PERSON'      => 'COA',
+			'PROFILE_PICTURE'  => 'profile.jpg'
+		);
+		if($this->Person_model->addPerson($person)){
+			$success = true;
+		}else{
+			$success = false;
+		}
+		echo json_encode(array('STATUS' => $success));
+	}
+
+	/*
+	Carga la vista de todos los coaches.
+	*/
+	public function view_all_coaches(){
+		$this->load->view('linegym/header');
+		$this->load->view('linegym/admin_views/all_coaches');
+		$this->load->view('linegym/footer');
+	}
+
+	/*
+	retorna la lista de todos los coaches.
+	*/
+	public function ajaxCoach_list(){
+		echo json_encode ($this->Person_model->coachList($this->session->ID_BOX));
+	}
+
+	/*
+	Borra un coach de la base de datos.
+	*/
+	public function ajaxDelete_coach($ID_PERSON){
+		$success = false;
+		if($this->Person_model->deletePerson($ID_PERSON, $this->session->ID_BOX)){
+			$success = true;
+		}
+		echo json_encode(array('STATUS' => $success));
+	}
+
+	/*
+	Carga la vista para editar un coach.
+	*/
+	public function edit_coach($ID_PERSON){
+		$data['coach'] = $this->Person_model->getPersonById($ID_PERSON, $this->session->ID_BOX);
+		$this->load->view('linegym/header');
+		$this->load->view('linegym/admin_views/edit_coach', $data);
 		$this->load->view('linegym/footer');
 	}
 

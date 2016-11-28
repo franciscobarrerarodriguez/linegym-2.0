@@ -33,7 +33,7 @@
       <?php	$this->load->view('linegym/admin_views/admin_nav'); ?>
       <script>
       function addClassActive(){
-        document.getElementById("id_plan").setAttribute("class" , 'active');
+        document.getElementById("menu_client").setAttribute("class" , 'active');
       }
       addClassActive();
       </script>
@@ -55,8 +55,8 @@
           <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../../../assets/lineGym/img/profile.jpg" alt="" class="img-circle" width="44" />
-              <?php echo $this->session->userdata('NAME_PERSON')?>
+              <img src="<?php echo base_url('assets/lineGym/img/')?><?php echo $this->session->PROFILE_PICTURE ?>" alt="" class="img-circle" width="44" />
+              <?php echo $this->session->NAME_PERSON ?>
             </a>
 
             <ul class="dropdown-menu">
@@ -145,8 +145,8 @@
 
           <ul class="nav tabs-vertical"><!-- available classes "right-aligned" -->
             <li class="active"><a href="#actives" data-toggle="tab">Activos</a></li>
-            <li><a href="#debt" data-toggle="tab">Profile</a></li>
-            <li><a href="#closed" data-toggle="tab">Messages</a></li>
+            <!-- <li><a href="#debt" data-toggle="tab">Inact</a></li> -->
+            <!-- <li><a href="#closed" data-toggle="tab">Messages</a></li> -->
           </ul>
 
           <div class="tab-content">
@@ -155,13 +155,13 @@
               </div>
             </div>
             <div class="tab-pane" id="debt">
-              <p>Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities the. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed add screened rendered six say his striking confined. </p>
+              <!-- <p>Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage comfort civilly. Dashwoods see frankness objection abilities the. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed add screened rendered six say his striking confined. </p> -->
             </div>
             <div class="tab-pane" id="closed">
-              <p>When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr. </p>
+              <!-- <p>When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr. </p> -->
             </div>
             <div class="tab-pane" id="v-settings">
-              <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. </p>
+              <!-- <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all. </p> -->
             </div>
           </div>
 
@@ -262,9 +262,11 @@
           success: function(json) {
             if (json.STATUS == true) {
               toastr.success("Cliente borrado");
-              renderClients();
+              setTimeout(function () {
+                location.reload();
+              }, 1000);
             }else{
-              toastr.danger("Ocurrio un error al borrar.");
+              toastr.error("Ocurrio un error al borrar.");
             }
           }
         });
